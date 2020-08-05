@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <car-details />
+    <car-details :car="searchCar()" />
   </div>
 </template>
 
@@ -10,8 +10,15 @@ import CarDetails from "@/components/CarDetails";
 export default {
   name: "CarsDetails",
   components: { CarDetails },
+  methods: {
+    searchCar() {
+      return this.cars.find((car) => {
+        return car.id === this.favorite;
+      });
+    },
+  },
   computed: {
-    ...mapState(["count", "cars"]),
+    ...mapState(["cars", "favorite"]),
   },
 };
 </script>

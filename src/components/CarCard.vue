@@ -1,7 +1,9 @@
 <template>
   <b-card :title="cardTitle()" :img-src="car.img" :img-alt="car.name" img-top class="mb-2 car-card">
     <b-card-text>{{ car.description }}</b-card-text>
-    <b-button href="/car-details" @click="analytics" variant="primary">Hop in!</b-button>
+    <router-link to="/car-details">
+      <b-button @click="analytics" variant="primary">Hop in!</b-button>
+    </router-link>
   </b-card>
 </template>
 
@@ -10,6 +12,7 @@ export default {
   name: "CarCard",
   props: {
     car: {
+      type: Object,
       required: false,
     },
   },
@@ -21,7 +24,7 @@ export default {
       return this.car.brand + " - " + this.car.name;
     },
     analytics() {
-      this.$store.commit("favorites", this.car.id);
+      this.$store.dispatch("favorite", this.car.id);
     },
   },
 };

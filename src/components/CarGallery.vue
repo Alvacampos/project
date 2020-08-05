@@ -1,31 +1,24 @@
 <template>
   <div>
-    <div v-if="cars.length !== 0">
-      <car-card v-for="car in cars" :key="car.id" :car="car" class="gallery" />
-    </div>
-    <div v-else>
-      <not-found :item="'Car'" />
-    </div>
+    <car-card v-for="car in cars" :key="car.id" :car="car" class="gallery" />
   </div>
 </template>
 
 <script>
 import CarCard from "@/components/CarCard";
-import NotFound from "@/components/NotFound";
 
 export default {
   name: "CarGallery",
-  components: { CarCard, NotFound },
+  components: { CarCard },
   props: {
     cars: {
+      type: Array,
       required: true,
-      default: [],
+      default: function () {
+        return [];
+      },
     },
   },
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>
 

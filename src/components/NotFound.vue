@@ -10,7 +10,9 @@ export default {
   props: {
     item: {
       required: false,
-      default: "",
+      default: function () {
+        return "";
+      },
     },
   },
 };
